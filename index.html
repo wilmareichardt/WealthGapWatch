@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ball Page</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #a0acb1;
+    overflow: hidden;
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  .red-ball {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #fc4a3e;
+    position: relative;
+    animation: grow 10s ease forwards;
+    animation-delay: 10s;
+  }
+
+  .yellow-ball {
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background-color: #00d1ae;
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+    animation: shrink 15s ease forwards;
+    animation-delay: 10s;
+  }
+
+  .yellow-ball-duplicate {
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background-color: #00d1ae;
+    position: absolute;
+  }
+
+  .text, .subtext, .elon-musk-text, .elon-musk-income, .additional-text, .additional-text-2, .final-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    opacity: 1;
+    font-size: 40px;
+    text-align: center;
+  }
+
+  .text { bottom: 780px; animation: fadeOut 2s ease forwards; animation-delay: 9s; }
+  .text span { opacity: 0; animation: fadeIn 2s ease forwards; }
+
+  .subtext { bottom: 730px; animation: fadeOut 2s ease forwards; animation-delay: 9s; }
+  .subtext span { opacity: 0; animation: fadeIn 2s ease forwards; animation-delay: 1s; }
+
+  .elon-musk-text { bottom: 450px; opacity: 0; font-size: 50px; animation: fadeIn 2s ease forwards 16s, fadeOutElon 2s ease forwards 19s; }
+  .elon-musk-text span { opacity: 0; animation: fadeIn 2s ease forwards; }
+
+  .elon-musk-income { bottom: 450px; opacity: 0; font-size: 50px; animation: fadeIn 2s ease forwards 20s, fadeOut 2s ease forwards 30s; }
+  .elon-musk-income span { opacity: 0; animation: fadeIn 7s ease forwards; animation-delay: 2s; }
+
+  .additional-text { bottom: 400px; opacity: 0; font-size: 30px; animation: fadeIn 2s ease forwards 25s, fadeOut 2s ease forwards 33s; }
+  .additional-text span { opacity: 0; animation: fadeIn 5s ease forwards; animation-delay: 0s; }
+
+  .additional-text-2 { bottom: 350px; opacity: 0; font-size: 30px; animation: fadeIn 2s ease forwards 30s, fadeOut 2s ease forwards 38s; }
+  .additional-text-2 span { opacity: 0; animation: fadeIn 5s ease forwards; animation-delay: 0s; }
+
+  .final-text { bottom: 440px; opacity: 0; font-size: 40px; animation: fadeIn 2s ease forwards 40s; }
+
+  @keyframes grow {
+    0% { width: 5px; height: 5px; }
+    100% { width: 800px; height: 800px; }
+  }
+
+  @keyframes shrink {
+    0% { width: 800px; height: 800px; }
+    100% { width: 2px; height: 2px; }
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  @keyframes fadeOutElon {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+</style>
+</head>
+<body>
+  <div class="red-ball">
+    <div class="yellow-ball"></div>
+  </div>
+  <div class="text"><span>THE AVERAGE PERSON</span></div>
+  <div class="subtext"><span>MAKES $9,733 A YEAR</span></div>
+  <div class="elon-musk-text"><span>ELON MUSK MAKES</span></div>
+  <div class="elon-musk-income"><span>$18,327,000,000</span></div>
+  <div class="additional-text"><span>or $50,210,958 million a day</span></div>
+  <div class="additional-text-2"><span>or $34,868 every minute</span></div>
+  <div class="final-text"><span>Now click to close the gap!</span></div>
+
+  <script>
+    document.body.addEventListener('click', function() {
+      const redBall = document.querySelector('.red-ball');
+      const newBall = document.createElement('div');
+      newBall.classList.add('yellow-ball-duplicate');
+
+      const redBallRect = redBall.getBoundingClientRect();
+      const maxX = redBallRect.width - 2;
+      const maxY = redBallRect.height - 2; 
+
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      newBall.style.left = `${randomX}px`;
+      newBall.style.top = `${randomY}px`;
+      
+      redBall.appendChild(newBall);
+    });
+  </script>
+</body>
+</html>
